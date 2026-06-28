@@ -26,7 +26,7 @@ export default function DateTime() {
   }, [])
 
   return (
-    <div className="widget-card relative overflow-hidden text-center px-8 py-7">
+    <div className="widget-card relative overflow-hidden text-center px-8 py-8">
       {/* Accent corner mark */}
       <div className="absolute top-0 left-0 w-[3px] h-full bg-accent/40 rounded-l-xl" />
 
@@ -34,12 +34,13 @@ export default function DateTime() {
         {formatDate(now)}
       </p>
       <p
-        className="mt-3 text-fg tabular-nums tracking-tight"
+        className="mt-2 text-fg tabular-nums antialiased"
         style={{
-          fontFamily: '"Source Serif 4", Georgia, serif',
-          fontSize: 'clamp(3rem, 12vw, 5rem)',
+          fontFamily: '"DM Mono", "JetBrains Mono", ui-monospace, monospace',
+          fontSize: 'clamp(2.25rem, 7vw, 3.75rem)',
           lineHeight: 1,
-          fontWeight: 600,
+          fontWeight: 500,
+          letterSpacing: '-0.04em',
         }}
       >
         {formatTime(now)}

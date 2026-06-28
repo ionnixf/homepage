@@ -39,7 +39,14 @@ export default function Greeting() {
         ) : null}
       </h1>
       {showBranding ? (
-        <p className="font-sans text-[11px] text-muted/50 mt-3 tracking-[0.15em] uppercase">
+        <p
+          className="text-muted/40 mt-3 uppercase select-none"
+          style={{
+            fontFamily: '"DM Mono", "JetBrains Mono", ui-monospace, monospace',
+            fontSize: 'clamp(9px, 1.5vw, 11px)',
+            letterSpacing: '0.35em',
+          }}
+        >
           Claude Home
         </p>
       ) : null}
