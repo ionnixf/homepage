@@ -22,6 +22,7 @@ interface PersistedState {
   quickLinks: QuickLink[]
   greetingName: string
   searchEngine: 'google' | 'duckduckgo' | 'bing'
+  showBranding: boolean
 }
 
 function loadState(): PersistedState {
@@ -38,6 +39,7 @@ function loadState(): PersistedState {
     quickLinks: DEFAULT_LINKS,
     greetingName: '',
     searchEngine: 'google',
+    showBranding: true,
   }
 }
 
@@ -59,6 +61,7 @@ export const useStore = create<AppState>((set, get) => ({
   quickLinks: persisted.quickLinks,
   greetingName: persisted.greetingName,
   searchEngine: persisted.searchEngine,
+  showBranding: persisted.showBranding,
 
   // ── Theme ──
   setTheme: (theme) => {
@@ -121,6 +124,11 @@ export const useStore = create<AppState>((set, get) => ({
     set({ searchEngine: engine })
     persist(get())
   },
+
+  setShowBranding: (show) => {
+    set({ showBranding: show })
+    persist(get())
+  },
 }))
 
 function persist(state: AppState) {
@@ -133,5 +141,6 @@ function persist(state: AppState) {
     quickLinks: state.quickLinks,
     greetingName: state.greetingName,
     searchEngine: state.searchEngine,
+    showBranding: state.showBranding,
   })
 }

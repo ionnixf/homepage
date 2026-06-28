@@ -8,7 +8,6 @@ interface StatusBarProps {
 
 export default function StatusBar({ onOpenSettings }: StatusBarProps) {
   const quickLinks = useStore((s) => s.quickLinks)
-  const theme = useStore((s) => s.theme)
 
   return (
     <footer
@@ -22,7 +21,6 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
 
       <div className="flex items-center gap-3">
         <span>{quickLinks.length} links</span>
-        <span className="uppercase">{theme}</span>
         <ThemeToggle />
         <button
           type="button"

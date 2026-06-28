@@ -10,6 +10,7 @@ function getGreeting(): string {
 
 export default function Greeting() {
   const name = useStore((s) => s.greetingName)
+  const showBranding = useStore((s) => s.showBranding)
   const [greeting, setGreeting] = useState(getGreeting)
 
   useEffect(() => {
@@ -29,9 +30,11 @@ export default function Greeting() {
           </>
         ) : null}
       </h1>
-      <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-accent/70 mt-2">
-        Claude Home
-      </p>
+      {showBranding ? (
+        <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-accent/70 mt-2">
+          Claude Home
+        </p>
+      ) : null}
     </div>
   )
 }

@@ -29,6 +29,8 @@ export default function WidgetSettings({ isOpen, onClose }: WidgetSettingsProps)
   const setGreetingName = useStore((s) => s.setGreetingName)
   const searchEngine = useStore((s) => s.searchEngine)
   const setSearchEngine = useStore((s) => s.setSearchEngine)
+  const showBranding = useStore((s) => s.showBranding)
+  const setShowBranding = useStore((s) => s.setShowBranding)
   const overlayRef = useRef<HTMLDivElement>(null)
 
   // Close on Escape
@@ -139,6 +141,40 @@ export default function WidgetSettings({ isOpen, onClose }: WidgetSettingsProps)
                 text-sm text-fg font-mono placeholder:text-dim outline-none
                 focus:ring-1 focus:ring-accent/40"
             />
+          </section>
+
+          {/* Appearance */}
+          <section>
+            <h3 className="font-mono text-[10px] uppercase tracking-widest text-muted mb-2">
+              Appearance
+            </h3>
+            <label
+              className="flex items-center justify-between py-2 px-3
+                rounded-md hover:bg-panel-hover transition-colors cursor-pointer"
+            >
+              <div>
+                <p className="text-sm text-fg font-medium">Show "Claude Home" branding</p>
+                <p className="text-xs text-muted font-mono">Subtitle under the greeting</p>
+              </div>
+              <div
+                className={`relative w-9 h-5 rounded-full transition-colors ${
+                  showBranding ? 'bg-accent' : 'bg-line'
+                }`}
+              >
+                <div
+                  className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full
+                    bg-white transition-transform ${
+                      showBranding ? 'translate-x-4' : 'translate-x-0'
+                    }`}
+                />
+                <input
+                  type="checkbox"
+                  checked={showBranding}
+                  onChange={() => setShowBranding(!showBranding)}
+                  className="sr-only"
+                />
+              </div>
+            </label>
           </section>
 
           {/* Search engine */}
