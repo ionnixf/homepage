@@ -21,6 +21,8 @@
   --cl-error: #a84b3a;
   --cl-success: #2e7c4c;
   --cl-status: #e5e2d8;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
@@ -65,9 +67,9 @@
 /* ── Base Styles ───────────────────────────────────────────── */
 
 * {
-  transition-property: color, background-color, border-color;
-  transition-duration: 200ms;
-  transition-timing-function: ease;
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: 250ms;
+  transition-timing-function: var(--ease-out-expo);
 }
 
 html {
@@ -149,6 +151,33 @@ html {
   .aurora::after {
     animation: none;
   }
+}
+
+/* ── Entry Animation ───────────────────────────────────────── */
+
+@keyframes widget-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.widget-enter {
+  animation: widget-enter 0.7s var(--ease-out-expo) both;
+}
+
+/* ── Tactile Feedback ──────────────────────────────────────── */
+
+.tactile {
+  transition: transform 150ms var(--ease-out-expo);
+}
+
+.tactile:active {
+  transform: scale(0.97);
 }
 
 /* ── Utilities ─────────────────────────────────────────────── */

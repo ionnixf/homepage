@@ -41,9 +41,10 @@ const WIDGET_CLASSES: Record<WidgetId, string> = {
 interface SortableWidgetProps {
   id: WidgetId
   isDragging?: boolean
+  index: number
 }
 
-function SortableWidget({ id, isDragging }: SortableWidgetProps) {
+function SortableWidget({ id, isDragging, index }: SortableWidgetProps) {
   const {
     attributes,
     listeners,
@@ -57,13 +58,14 @@ function SortableWidget({ id, isDragging }: SortableWidgetProps) {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isSortDragging ? 0.4 : 1,
+    animationDelay: `${index * 0.08}s`,
   }
 
   return (
     <div
       ref={setNodeRef}
       style={style}
-      className={`relative group ${WIDGET_CLASSES[id]} w-full ${
+      className={`relative group widget-enter ${WIDGET_CLASSES[id]} w-full ${
         isDragging ? 'z-50' : ''
       }`}
     >
@@ -74,7 +76,7 @@ function SortableWidget({ id, isDragging }: SortableWidgetProps) {
         {...listeners}
         className="absolute -left-8 top-1/2 -translate-y-1/2 p-1 opacity-0
           group-hover:opacity-100 transition-opacity text-dim hover:text-accent
-          cursor-grab active:cursor-grabbing z-10"
+          cursor-grab active:cursor-grabbing z-10 tactile"
         aria-label="Drag to reorder"
       >
         <GripVertical size={14} />
@@ -159,8 +161,8 @@ export default function WidgetGrid() {
         strategy={verticalListSortingStrategy}
       >
         <div className="flex flex-col items-center gap-3 w-full">
-          {visibleWidgets.map((w) => (
-            <SortableWidget key={w.id} id={w.id} isDragging={w.id === activeId} />
+          {visibleWidgets.map((w, i) => (
+            <SortableWidget key={w.id} id={w.id} isDragging={w.id === activeId} index={i} />
           ))}
         </div>
       </SortableContext>

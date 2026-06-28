@@ -61,7 +61,7 @@ export default function PromptBar() {
         <button
           type="submit"
           disabled={!query.trim()}
-          className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg
+          className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg tactile
             bg-accent text-white hover:bg-accent-hover
             disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
           aria-label="Search"

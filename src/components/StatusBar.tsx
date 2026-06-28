@@ -25,7 +25,7 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
         <button
           type="button"
           onClick={onOpenSettings}
-          className="flex items-center gap-1 hover:text-fg transition-colors cursor-pointer"
+          className="flex items-center gap-1 tactile hover:text-fg transition-colors cursor-pointer"
           aria-label="Settings"
         >
           <Settings size={12} />

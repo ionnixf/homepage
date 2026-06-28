@@ -31,7 +31,7 @@ function loadState(): PersistedState {
     if (raw) return JSON.parse(raw) as PersistedState
   } catch { /* ignore */ }
   return {
-    theme: 'dark',
+    theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
     widgetOrder: DEFAULT_WIDGETS.map((w) => w.id),
     widgetVisibility: Object.fromEntries(
       DEFAULT_WIDGETS.map((w) => [w.id, w.visible]),

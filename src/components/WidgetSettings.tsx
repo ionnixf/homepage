@@ -76,7 +76,7 @@ export default function WidgetSettings({ isOpen, onClose }: WidgetSettingsProps)
             type="button"
             onClick={onClose}
             className="p-1 rounded text-dim hover:text-fg hover:bg-panel-hover
-              transition-colors cursor-pointer"
+              transition-colors cursor-pointer tactile"
             aria-label="Close settings"
           >
             <X size={16} />
@@ -188,7 +188,7 @@ export default function WidgetSettings({ isOpen, onClose }: WidgetSettingsProps)
                   key={engine}
                   type="button"
                   onClick={() => setSearchEngine(engine)}
-                  className={`flex-1 px-3 py-2 rounded text-xs font-mono
+                  className={`flex-1 px-3 py-2 rounded text-xs font-sans tactile
                     transition-colors cursor-pointer ${
                       searchEngine === engine
                         ? 'bg-accent text-white'
