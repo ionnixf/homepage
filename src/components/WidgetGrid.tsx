@@ -166,8 +166,8 @@ export default function WidgetGrid() {
         strategy={verticalListSortingStrategy}
       >
         <div
-          className={`flex flex-col items-center gap-3 w-full ${
-            editing ? 'gap-4' : ''
+          className={`flex flex-col items-center w-full ${
+            editing ? 'gap-5' : 'gap-4'
           }`}
         >
           {visibleWidgets.map((w, i) => (

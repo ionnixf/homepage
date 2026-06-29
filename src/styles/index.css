@@ -15,7 +15,6 @@
   --cl-muted: #6b665f;
   --cl-dim: #9a958c;
   --cl-accent: #c15f3c;
-  /* Derived from --cl-accent via color-mix (light: hover darker) */
   --cl-accent-hover: color-mix(in srgb, var(--cl-accent) 78%, #000);
   --cl-accent-subtle: color-mix(in srgb, var(--cl-accent) 10%, var(--cl-canvas));
   --cl-accent-glow: color-mix(in srgb, var(--cl-accent) 14%, transparent);
@@ -37,7 +36,6 @@
   --cl-muted: #a9a39a;
   --cl-dim: #6a6158;
   --cl-accent: #c15f3c;
-  /* Derived from --cl-accent via color-mix (dark: hover lighter) */
   --cl-accent-hover: color-mix(in srgb, var(--cl-accent) 72%, #fff);
   --cl-accent-subtle: color-mix(in srgb, var(--cl-accent) 14%, var(--cl-canvas));
   --cl-accent-glow: color-mix(in srgb, var(--cl-accent) 20%, transparent);
@@ -66,7 +64,7 @@
   --font-mono: "DM Mono", "JetBrains Mono", ui-monospace, monospace;
 }
 
-/* ── Base Styles ───────────────────────────────────────────── */
+/* ── Base ──────────────────────────────────────────────────── */
 
 * {
   transition-property: color, background-color, border-color, transform, opacity;
@@ -84,106 +82,65 @@ html {
 
 /* ── Scrollbar ─────────────────────────────────────────────── */
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--cl-line); border-radius: 3px; }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--cl-line);
-  border-radius: 3px;
-}
-
-/* ── Animated Aurora Background ────────────────────────────── */
+/* ── Aurora Background ─────────────────────────────────────── */
 
 @keyframes aurora-drift-1 {
   0%, 100% { transform: translate(-10%, -5%) scale(1); }
   33% { transform: translate(15%, 10%) scale(1.2); }
   66% { transform: translate(5%, -15%) scale(0.9); }
 }
-
 @keyframes aurora-drift-2 {
   0%, 100% { transform: translate(10%, 5%) scale(0.9); }
   50% { transform: translate(-15%, -10%) scale(1.3); }
 }
-
 @keyframes aurora-pulse {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
-
 .aurora {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  pointer-events: none;
-  overflow: hidden;
+  position: fixed; inset: 0; z-index: -10;
+  pointer-events: none; overflow: hidden;
 }
-
-.aurora::before,
-.aurora::after {
-  content: "";
-  position: absolute;
-  width: 50vw;
-  height: 50vw;
-  border-radius: 50%;
+.aurora::before, .aurora::after {
+  content: ""; position: absolute;
+  width: 50vw; height: 50vw; border-radius: 50%;
   filter: blur(100px);
 }
-
 .aurora::before {
-  top: -25%;
-  left: 15%;
+  top: -25%; left: 15%;
   background: radial-gradient(circle, var(--cl-accent-glow), transparent 70%);
   animation: aurora-drift-1 20s ease-in-out infinite, aurora-pulse 8s ease-in-out infinite;
 }
-
 .aurora::after {
-  bottom: -25%;
-  right: 10%;
+  bottom: -25%; right: 10%;
   background: radial-gradient(circle, var(--cl-accent-glow), transparent 70%);
   animation: aurora-drift-2 25s ease-in-out infinite, aurora-pulse 10s ease-in-out infinite 2s;
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .aurora::before,
-  .aurora::after {
-    animation: none;
-  }
+  .aurora::before, .aurora::after { animation: none; }
 }
 
 /* ── Entry Animation ───────────────────────────────────────── */
 
 @keyframes widget-enter {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 .widget-enter {
-  animation: widget-enter 0.7s var(--ease-out-expo) both;
+  animation: widget-enter 0.8s var(--ease-in-out-smooth) both;
 }
 
 /* ── Tactile Feedback ──────────────────────────────────────── */
 
-.tactile {
-  transition: transform 150ms var(--ease-out-expo);
-}
-
-.tactile:active {
-  transform: scale(0.97);
-}
+.tactile { transition: transform 150ms var(--ease-out-expo); }
+.tactile:active { transform: scale(0.97); }
 
 /* ── Utilities ─────────────────────────────────────────────── */
 
 @utility widget-card {
-  @apply bg-panel border border-line rounded-xl p-5;
+  @apply bg-panel border border-line rounded-xl p-6;
 }

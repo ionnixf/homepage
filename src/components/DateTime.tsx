@@ -35,7 +35,7 @@ export default function DateTime() {
         className="mt-2 text-fg tabular-nums antialiased"
         style={{
           fontFamily: '"DM Mono", "JetBrains Mono", ui-monospace, monospace',
-          fontSize: 'clamp(2.25rem, 7vw, 3.75rem)',
+          fontSize: 'clamp(2.75rem, 8vw, 4.5rem)',
           lineHeight: 1,
           fontWeight: 500,
           letterSpacing: '-0.04em',

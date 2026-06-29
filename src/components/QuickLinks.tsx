@@ -93,14 +93,14 @@ function LinkCard({ link, onEdit, onDelete }: LinkCardProps) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border border-line
-        bg-panel hover:bg-panel-hover transition-colors no-underline cursor-pointer relative"
+      className="group flex items-center gap-3 px-4 py-3 rounded-lg border border-line
+        bg-panel hover:bg-panel-hover hover:border-line-strong transition-all no-underline cursor-pointer relative"
     >
-      <Globe size={14} className="text-dim/60 group-hover:text-accent shrink-0 transition-colors" />
+      <Globe size={15} className="text-dim/60 group-hover:text-accent shrink-0 transition-colors" />
       <span className="text-sm text-fg truncate flex-1">
         {link.label}
       </span>
-      <span className="font-mono text-[10px] text-dim/60 truncate max-w-[90px] hidden sm:block">
+      <span className="font-mono text-[10px] text-dim/60 truncate max-w-[100px] hidden sm:block">
         {link.url.replace(/^https?:\/\//, '')}
       </span>
 
