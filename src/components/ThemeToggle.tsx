@@ -9,7 +9,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="flex items-center gap-1.5 px-2 py-0.5 text-[11px] text-dim/60 tactile
+      className="flex items-center gap-1.5 px-2 py-0.5 text-[11px] text-dim/60
         hover:text-fg hover:bg-panel-hover rounded transition-colors cursor-pointer font-sans leading-none"
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
     >

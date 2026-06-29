@@ -27,7 +27,7 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
         <button
           type="button"
           onClick={() => setEditing(!editing)}
-          className={`flex items-center gap-1.5 px-2 py-0.5 rounded tactile transition-colors cursor-pointer font-sans text-[11px] ${
+          className={`flex items-center gap-1.5 px-2 py-0.5 rounded transition-colors cursor-pointer font-sans text-[11px] ${
             editing
               ? 'bg-accent/15 text-accent'
               : 'text-dim/60 hover:text-fg hover:bg-panel-hover'
@@ -42,7 +42,7 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
         <button
           type="button"
           onClick={onOpenSettings}
-          className="flex items-center gap-1 hover:text-fg transition-colors cursor-pointer tactile px-1.5 py-0.5"
+          className="flex items-center gap-1 hover:text-fg transition-colors cursor-pointer px-1.5 py-0.5"
           aria-label="Settings"
         >
           <Settings size={11} aria-hidden="true" />

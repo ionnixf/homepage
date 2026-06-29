@@ -81,7 +81,7 @@ function SortableWidget({ id, isDragging, index, editing }: SortableWidgetProps)
           {...listeners}
           className="absolute -left-10 top-1/2 -translate-y-1/2 p-1.5
             text-dim hover:text-accent cursor-grab active:cursor-grabbing
-            z-10 tactile"
+            z-10"
           aria-label="Drag to reorder"
         >
           <GripVertical size={16} />

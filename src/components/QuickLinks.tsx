@@ -47,14 +47,14 @@ function LinkForm({ initial, onSubmit, onCancel }: LinkFormProps) {
           type="button"
           onClick={onCancel}
           className="px-3 py-1 text-xs font-sans text-muted/60 hover:text-fg
-            hover:bg-panel-hover rounded transition-colors cursor-pointer tactile"
+            hover:bg-panel-hover rounded transition-colors cursor-pointer"
         >
           cancel
         </button>
         <button
           type="submit"
           disabled={!label.trim() || !url.trim()}
-          className="px-3 py-1 text-xs font-sans text-white bg-accent tactile
+          className="px-3 py-1 text-xs font-sans text-white bg-accent
             hover:bg-accent-hover rounded disabled:opacity-40 transition-colors cursor-pointer"
         >
           {initial ? 'save' : 'add'}
@@ -117,7 +117,7 @@ function LinkCard({ link, onEdit, onDelete }: LinkCardProps) {
             setEditing(true)
           }}
           className="p-1 rounded text-dim hover:text-accent hover:bg-accent-subtle
-            transition-colors cursor-pointer tactile"
+            transition-colors cursor-pointer"
           aria-label="Edit link"
         >
           <Pencil size={12} />
@@ -159,9 +159,9 @@ export default function QuickLinks() {
           type="button"
           onClick={() => setAdding(true)}
           className="flex items-center gap-1.5 text-xs font-sans text-muted/60
-            hover:text-accent transition-colors cursor-pointer tactile"
-        >
-          <Plus size={12} />
+            hover:text-accent transition-colors cursor-pointer"
+          >
+            <Plus size={12} />
           Add
         </button>
       </div>

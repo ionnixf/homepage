@@ -95,7 +95,7 @@ export default function WidgetSettings({ isOpen, onClose }: { isOpen: boolean; o
             type="button"
             onClick={onClose}
             className="p-1.5 rounded-lg text-dim hover:text-fg hover:bg-panel-hover
-              transition-all cursor-pointer tactile"
+              transition-all cursor-pointer"
             aria-label="Close settings"
           >
             <X size={16} />
