@@ -13,13 +13,13 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
 
   return (
     <footer
-      className="fixed bottom-0 left-0 right-0 h-6 bg-status border-t border-line
+      className="fixed bottom-0 left-0 right-0 h-7 bg-status border-t border-line
         flex items-center justify-between px-3 text-[11px] font-sans text-dim/60 z-50"
     >
       <div className="flex items-center gap-3">
-        <span className="hidden sm:inline">Dawn</span>
-        <span className="hidden sm:inline">v0.3.0</span>
-        <span>{quickLinks.length} links</span>
+        <span className="hidden sm:inline leading-none">Dawn</span>
+        <span className="hidden sm:inline leading-none">v0.3.0</span>
+        <span className="leading-none">{quickLinks.length} links</span>
       </div>
 
       <div className="flex items-center gap-1.5">
@@ -34,7 +34,7 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
           aria-label={editing ? 'Done editing' : 'Edit layout'}
         >
           <Layout size={11} aria-hidden="true" />
-          <span>{editing ? 'Done' : 'Edit'}</span>
+          <span className="leading-none">{editing ? 'Done' : 'Edit'}</span>
         </button>
 
         <ThemeToggle />
