@@ -23,18 +23,11 @@ export default function PromptBar() {
 
   return (
     <div
-      className={`widget-card relative overflow-hidden transition-all ${
+      className={`widget-card relative transition-all ${
         focused ? 'border-accent/40 shadow-sm shadow-accent/5' : ''
       }`}
     >
-      {/* Accent left bar */}
-      <div
-        className={`absolute top-0 left-0 w-[3px] h-full rounded-l-xl transition-opacity ${
-          focused ? 'bg-accent opacity-100' : 'bg-accent/30'
-        }`}
-      />
-
-      <form onSubmit={handleSubmit} className="flex items-center gap-3 pl-2">
+      <form onSubmit={handleSubmit} className="flex items-center gap-3">
         <Search
           size={18}
           className={`shrink-0 transition-colors ${
@@ -72,10 +65,9 @@ export default function PromptBar() {
 
       {/* Bottom accent line */}
       <div
-        className={`mt-3 ml-1 h-[2px] rounded-full transition-all ${
+        className={`mt-3 h-[2px] rounded-full transition-all ${
           focused ? 'bg-accent/60' : 'bg-line'
         }`}
-        style={{ width: 'calc(100% - 0.5rem)' }}
       />
     </div>
   )

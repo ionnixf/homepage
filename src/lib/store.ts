@@ -65,6 +65,7 @@ export const useStore = create<AppState>((set, get) => ({
   searchEngine: persisted.searchEngine,
   showBranding: persisted.showBranding,
   accentColor: persisted.accentColor || '#c15f3c',
+  editing: false,
 
   // ── Theme ──
   setTheme: (theme) => {
@@ -137,6 +138,10 @@ export const useStore = create<AppState>((set, get) => ({
     set({ accentColor: color })
     document.documentElement.style.setProperty('--cl-accent', color)
     persist(get())
+  },
+
+  setEditing: (editing) => {
+    set({ editing })
   },
 }))
 

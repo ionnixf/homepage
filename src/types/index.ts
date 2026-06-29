@@ -19,6 +19,7 @@ export interface AppState {
   searchEngine: 'google' | 'duckduckgo' | 'bing'
   showBranding: boolean
   accentColor: string
+  editing: boolean
   setTheme: (theme: 'dark' | 'light') => void
   toggleTheme: () => void
   toggleWidget: (id: WidgetId) => void
@@ -30,4 +31,5 @@ export interface AppState {
   setSearchEngine: (engine: AppState['searchEngine']) => void
   setShowBranding: (show: boolean) => void
   setAccentColor: (color: string) => void
+  setEditing: (editing: boolean) => void
 }

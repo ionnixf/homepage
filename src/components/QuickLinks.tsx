@@ -149,13 +149,10 @@ export default function QuickLinks() {
 
   return (
     <div className="widget-card relative">
-      {/* Accent corner mark */}
-      <div className="absolute top-0 left-0 w-[3px] h-full bg-accent/30 rounded-l-xl" />
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-3 pl-1">
-        <h2 className="font-sans text-xs uppercase tracking-[0.15em] text-accent/70 flex items-center gap-2">
-          <span className="inline-block w-[5px] h-[5px] rounded-full bg-accent/60" />
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="font-sans text-xs uppercase tracking-[0.15em] text-muted">
           Quick Links
         </h2>
         <button
@@ -184,13 +181,13 @@ export default function QuickLinks() {
 
       {/* Links */}
       {quickLinks.length === 0 && !adding && (
-        <p className="text-xs font-mono text-dim py-2 pl-1">
+        <p className="text-xs font-mono text-dim py-2">
           No links yet. Click "add" to create one.
         </p>
       )}
 
       {quickLinks.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {quickLinks.map((link) => (
             <LinkCard
               key={link.id}

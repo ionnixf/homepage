@@ -26,9 +26,7 @@ export default function DateTime() {
   }, [])
 
   return (
-    <div className="widget-card relative overflow-hidden text-center px-8 py-8">
-      {/* Accent corner mark */}
-      <div className="absolute top-0 left-0 w-[3px] h-full bg-accent/40 rounded-l-xl" />
+    <div className="widget-card relative text-center px-8 py-8">
 
       <p className="font-sans text-xs text-muted uppercase tracking-[0.2em]">
         {formatDate(now)}

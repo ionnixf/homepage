@@ -42,9 +42,10 @@ interface SortableWidgetProps {
   id: WidgetId
   isDragging?: boolean
   index: number
+  editing: boolean
 }
 
-function SortableWidget({ id, isDragging, index }: SortableWidgetProps) {
+function SortableWidget({ id, isDragging, index, editing }: SortableWidgetProps) {
   const {
     attributes,
     listeners,
@@ -52,12 +53,12 @@ function SortableWidget({ id, isDragging, index }: SortableWidgetProps) {
     transform,
     transition,
     isDragging: isSortDragging,
-  } = useSortable({ id })
+  } = useSortable({ id, disabled: !editing })
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isSortDragging ? 0.4 : 1,
+    opacity: isSortDragging ? 0.3 : 1,
     animationDelay: `${index * 0.08}s`,
   }
 
@@ -65,22 +66,27 @@ function SortableWidget({ id, isDragging, index }: SortableWidgetProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`relative group widget-enter ${WIDGET_CLASSES[id]} w-full ${
-        isDragging ? 'z-50' : ''
-      }`}
+      className={`
+        relative widget-enter ${WIDGET_CLASSES[id]} w-full
+        ${isDragging ? 'z-50' : ''}
+        ${editing ? 'ring-1 ring-accent/20 rounded-xl' : ''}
+        ${isSortDragging ? 'ring-2 ring-accent/40' : ''}
+      `}
     >
-      {/* Drag handle */}
-      <button
-        type="button"
-        {...attributes}
-        {...listeners}
-        className="absolute -left-8 top-1/2 -translate-y-1/2 p-1 opacity-0
-          group-hover:opacity-100 transition-opacity text-dim hover:text-accent
-          cursor-grab active:cursor-grabbing z-10 tactile"
-        aria-label="Drag to reorder"
-      >
-        <GripVertical size={14} />
-      </button>
+      {/* Drag handle — only visible in edit mode */}
+      {editing ? (
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          className="absolute -left-10 top-1/2 -translate-y-1/2 p-1.5
+            text-dim hover:text-accent cursor-grab active:cursor-grabbing
+            z-10 tactile"
+          aria-label="Drag to reorder"
+        >
+          <GripVertical size={16} />
+        </button>
+      ) : null}
 
       {WIDGET_MAP[id]}
     </div>
@@ -90,6 +96,7 @@ function SortableWidget({ id, isDragging, index }: SortableWidgetProps) {
 export default function WidgetGrid() {
   const widgets = useStore((s) => s.widgets)
   const reorderWidgets = useStore((s) => s.reorderWidgets)
+  const editing = useStore((s) => s.editing)
   const [activeId, setActiveId] = useState<WidgetId | null>(null)
 
   const sensors = useSensors(
@@ -110,7 +117,6 @@ export default function WidgetGrid() {
 
     if (!over || active.id === over.id) return
 
-    // Reorder only the visible widgets while preserving hidden widget positions
     const visibleIds = visibleWidgets.map((w) => w.id)
     const oldIndex = visibleIds.indexOf(active.id as WidgetId)
     const newIndex = visibleIds.indexOf(over.id as WidgetId)
@@ -119,7 +125,6 @@ export default function WidgetGrid() {
 
     const newVisibleIds = arrayMove(visibleIds, oldIndex, newIndex)
 
-    // Merge: keep hidden widgets in their current positions, replace visible ones
     const allIds = widgets.map((w) => w.id)
     const hiddenIds = allIds.filter((id) => !visibleIds.includes(id))
     const merged: WidgetId[] = []
@@ -160,16 +165,29 @@ export default function WidgetGrid() {
         items={visibleWidgets.map((w) => w.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex flex-col items-center gap-3 w-full">
+        <div
+          className={`flex flex-col items-center gap-3 w-full ${
+            editing ? 'gap-4' : ''
+          }`}
+        >
           {visibleWidgets.map((w, i) => (
-            <SortableWidget key={w.id} id={w.id} isDragging={w.id === activeId} index={i} />
+            <SortableWidget
+              key={w.id}
+              id={w.id}
+              isDragging={w.id === activeId}
+              index={i}
+              editing={editing}
+            />
           ))}
         </div>
       </SortableContext>
 
-      <DragOverlay>
+      <DragOverlay dropAnimation={null}>
         {activeId ? (
-          <div className={`${WIDGET_CLASSES[activeId]} w-full opacity-80`}>
+          <div
+            className={`${WIDGET_CLASSES[activeId]} w-full opacity-90
+              ring-2 ring-accent/30 rounded-xl shadow-lg shadow-black/10`}
+          >
             {WIDGET_MAP[activeId]}
           </div>
         ) : null}

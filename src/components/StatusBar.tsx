@@ -1,6 +1,6 @@
 import { useStore } from '../lib/store'
 import ThemeToggle from './ThemeToggle'
-import { Settings } from 'lucide-react'
+import { Settings, Layout } from 'lucide-react'
 
 interface StatusBarProps {
   onOpenSettings: () => void
@@ -8,6 +8,8 @@ interface StatusBarProps {
 
 export default function StatusBar({ onOpenSettings }: StatusBarProps) {
   const quickLinks = useStore((s) => s.quickLinks)
+  const editing = useStore((s) => s.editing)
+  const setEditing = useStore((s) => s.setEditing)
 
   return (
     <footer
@@ -16,16 +18,30 @@ export default function StatusBar({ onOpenSettings }: StatusBarProps) {
     >
       <div className="flex items-center gap-3">
         <span className="hidden sm:inline">Dawn</span>
-        <span className="hidden sm:inline">v0.1.0</span>
+        <span className="hidden sm:inline">v0.3.0</span>
         <span>{quickLinks.length} links</span>
       </div>
 
       <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setEditing(!editing)}
+          className={`flex items-center gap-1.5 px-2 py-0.5 rounded tactile transition-colors cursor-pointer font-sans text-[11px] ${
+            editing
+              ? 'bg-accent/15 text-accent'
+              : 'text-dim/60 hover:text-fg hover:bg-panel-hover'
+          }`}
+          aria-label={editing ? 'Done editing' : 'Edit layout'}
+        >
+          <Layout size={12} />
+          <span>{editing ? 'Done' : 'Edit'}</span>
+        </button>
+
         <ThemeToggle />
         <button
           type="button"
           onClick={onOpenSettings}
-          className="flex items-center gap-1 tactile hover:text-fg transition-colors cursor-pointer"
+          className="flex items-center gap-1 hover:text-fg transition-colors cursor-pointer tactile"
           aria-label="Settings"
         >
           <Settings size={12} />
